@@ -18,8 +18,9 @@ package strategies
 
 import (
 	"strings"
+	"time"
 
-	"k8s.io/api/core/v1"
+	v1 "k8s.io/api/core/v1"
 	clientset "k8s.io/client-go/kubernetes"
 	"k8s.io/klog"
 
@@ -64,6 +65,7 @@ func deleteDuplicatePods(client clientset.Interface, policyGroupVersion string, 
 						nodepodCount[node]++
 						klog.V(1).Infof("Evicted pod: %#v (%#v)", pods[i].Name, err)
 					}
+					time.Sleep(time.Minute)
 				}
 			}
 		}
