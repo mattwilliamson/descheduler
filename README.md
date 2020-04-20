@@ -61,8 +61,8 @@ By default, all strategies are enabled.
 
 ### RemoveDuplicates
 
-This strategy makes sure that there is only one pod associated with a Replica Set (RS),
-Replication Controller (RC), Deployment, or Job running on the same node. If there are more,
+This strategy averages out the pods per node associated with a Replica Set (RS),
+Replication Controller (RC), Deployment, or Job running on the same node. If there are more than the average count,
 those duplicate pods are evicted for better spreading of pods in a cluster. This issue could happen
 if some nodes went down due to whatever reasons, and pods on them were moved to other nodes leading to
 more than one pod associated with a RS or RC, for example, running on the same node. Once the failed nodes
@@ -76,6 +76,8 @@ strategies:
   "RemoveDuplicates":
      enabled: false
 ```
+
+
 
 ### LowNodeUtilization
 
